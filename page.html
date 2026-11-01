@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monad network events calendar — Prooflines</title>
+<meta name="description" content="Subscribe to Monad load tests, releases and verified Foundation announcements in Google, Apple or Outlook calendar.">
+<meta property="og:title" content="Monad network events calendar">
+<meta property="og:description" content="One link: Monad load tests, releases and verified Foundation announcements in your own calendar.">
+<meta property="og:url" content="https://prooflines.org/monad/events/">
+<meta property="og:site_name" content="Prooflines">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon-proofline.svg">
+<link rel="alternate" type="text/calendar" title="Monad network events" href="{{FEED}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0e1c;--panel:#0e1424;--line:rgba(140,160,200,.14);--ink:#eef1f6;--ink2:#b9c4dd;--muted:#8d99b5;--accent:#8f7bf8;--accent2:#5f8afa;--warn:#f5b84a}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:radial-gradient(ellipse 640px 460px at 92% 4%,rgba(143,123,248,.11) 0%,transparent 62%),linear-gradient(150deg,#0a0e1c 0%,#0a1020 55%,#070a14 100%);color:var(--ink);font-family:"Space Grotesk",sans-serif;min-height:100vh}
+  .wrap{max-width:52rem;margin:0 auto;padding:2rem 1rem 4rem}
+  a{color:var(--accent2);text-decoration:none} a:hover{text-decoration:underline}
+  .brand{display:flex;align-items:center;gap:.7rem;color:var(--ink);margin-bottom:2.4rem}
+  .brand img{width:28px;height:28px} .brand b{font-family:"Oxanium";letter-spacing:.18em;font-size:.95rem}
+  h1{font-family:"Oxanium";font-size:clamp(1.6rem,5vw,2.3rem)}
+  h2{font-family:"Oxanium";font-size:1.15rem;margin:2.2rem 0 .8rem}
+  .tag{color:var(--ink2);margin:.7rem 0 1.6rem;max-width:42rem}
+  .feed{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem}
+  .feed code{font-family:"JetBrains Mono",monospace;font-size:.85rem;word-break:break-all;flex:1 1 16rem}
+  button,.btn{font:inherit;font-size:.85rem;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer;white-space:nowrap}
+  .btns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+  .btn.alt{background:transparent;border:1px solid var(--line);color:var(--ink2)}
+  ol{margin:.4rem 0 0 1.2rem;color:var(--ink2)} li{margin:.35rem 0}
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem}
+  .card b{display:block;margin-bottom:.2rem}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  td{padding:.6rem .8rem;border-top:1px solid var(--line);vertical-align:top}
+  tr:first-child td{border-top:0}
+  td.m{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--muted);white-space:nowrap;width:1%}
+  .note{color:var(--muted);font-size:.88rem;margin-top:.8rem;max-width:44rem}
+  .warn{color:var(--warn);margin:.8rem 0}
+  footer{color:var(--muted);font-size:.82rem;margin-top:2.6rem}
+  @media(max-width:520px){td.m{font-size:.7rem;padding-right:.4rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="/monad/"><img src="../assets/favicon-proofline.svg" alt=""><b>PROOFLINES</b></a>
+  <h1>Monad network events calendar</h1>
+  <p class="tag">Load tests, releases and Monad Foundation announcements in the calendar you already use. Subscribe once; new and moved events update by themselves.</p>
+  {{STALE}}
+  <div class="feed"><code id="feed">{{FEED}}</code><button onclick="navigator.clipboard.writeText(document.getElementById('feed').textContent).then(()=>{this.textContent='Copied'})">Copy link</button></div>
+  <div class="btns"><a class="btn" href="{{GCAL}}">Add to Google Calendar</a><a class="btn alt" href="{{WEBCAL}}">Open in Apple / Outlook</a></div>
+
+  <h2>Subscribe by hand</h2>
+  <div class="apps">
+    <div class="card"><b>Google Calendar</b><ol><li>Other calendars, <b style="display:inline">+</b></li><li>From URL</li><li>Paste the link</li></ol></div>
+    <div class="card"><b>Apple Calendar</b><ol><li>File, New Calendar Subscription</li><li>Paste the link</li><li>Auto-refresh: every hour</li></ol></div>
+    <div class="card"><b>Outlook</b><ol><li>Add calendar</li><li>Subscribe from web</li><li>Paste the link</li></ol></div>
+  </div>
+  <p class="note">Times are UTC in the feed; your app shows them in your own time zone. Load tests and releases carry a reminder one hour before. Google refreshes subscribed calendars on its own schedule, often every few hours, so for anything urgent the announcement itself comes first.</p>
+
+  <h2>Coming up</h2>
+  <table>{{ROWS}}</table>
+
+  <h2>Latest verified Foundation announcements</h2>
+  <table>{{RECENT}}</table>
+  <p class="note">Included only when the announcement in <a href="https://github.com/monad-crypto/mf-nodeops-comms">mf-nodeops-comms</a> carries good signatures from at least two keys listed at <a href="https://docs.monad.xyz/node-ops/gpg-keys.json">docs.monad.xyz</a>.</p>
+
+  <footer>Events come from the <a href="https://www.gmonads.com/events">gmonads.com events calendar</a>; all credit to gmonads for keeping it. This feed only makes it subscribable, and will step aside if gmonads ships its own. Updated {{UPDATED}}. Source: <a href="https://github.com/ColinkaMir/monad-events-ics">monad-events-ics</a>.</footer>
+</div>
+</body>
+</html>
