@@ -25,6 +25,7 @@ import os
 import re
 import shutil
 import sys
+import urllib.parse
 import urllib.request
 
 GMONADS = "https://www.gmonads.com/api/events"
@@ -212,7 +213,7 @@ def page(events, gm_ok):
                   for e in recent)
     tpl = open(os.path.join(HERE, "page.html")).read()
     return (tpl.replace("{{FEED}}", FEED).replace("{{WEBCAL}}", FEED.replace("https://", "webcal://"))
-               .replace("{{GCAL}}", "https://calendar.google.com/calendar/r?cid=" + FEED.replace("https://", "webcal://"))
+               .replace("{{GCAL}}", "https://calendar.google.com/calendar/r?cid=" + urllib.parse.quote(FEED, safe=""))
                .replace("{{ROWS}}", "\n".join(rows) or "<tr><td colspan=2>No upcoming events listed right now.</td></tr>")
                .replace("{{RECENT}}", rec or "<tr><td colspan=2>None yet.</td></tr>")
                .replace("{{UPDATED}}", NOW.strftime("%Y-%m-%d %H:%M UTC"))
